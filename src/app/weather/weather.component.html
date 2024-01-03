@@ -1,0 +1,98 @@
+<div class="search">
+<form>
+    <input type="text" id="city" placeholder="Enter your location">
+    <button  (click)="cityName()"><i class="fa fa-search" aria-hidden="true"></i></button>
+</form>
+</div>
+
+<div *ngIf="!error" class="container">
+    <div class="upper-data">
+        <img src="../assets/night.jpeg" *ngIf="!WeatherData.isDay">
+        <img src="../assets/day.jpeg" *ngIf="WeatherData.isDay">
+    
+        <div class="weather-data">
+        <img style="width:45px; height: 45px; position: relative" src="../assets/location.png">    
+        <div class="location">{{ WeatherData.name }}</div>&nbsp;
+        <div class="temperature">{{ this.WeatherData.temp_celcius | number: '1.0-0'}}°C</div>&nbsp;
+        <div class="feelsLike" >RealFeel@{{this.WeatherData.temp_feels_like }}°C</div>
+        </div>
+    </div>
+    
+    <div class="lower-data">
+        <div class="more-info-label">More Information</div>
+        <div class="time">{{currentTime}}</div>
+
+       <div class="more-info-container">
+        <div class="info-block">
+            <div class="info-block-label">
+            <img src="../assets/min.png">
+            <span>min</span>
+            </div>
+            <div class="info-block-value">
+            {{ this.WeatherData.temp_min| number: '1.0-0'}}°C
+            </div>
+        </div>
+    
+        <div class="info-block">
+            <div class="info-block-label">
+            <img src="../assets/max.png">
+            <span>max</span>
+            </div>
+            <div class="info-block-value">
+            {{ this.WeatherData.temp_max | number: '1.0-0'}}°C
+            </div>
+        </div>
+    
+        <div class="info-block">
+            <div class="info-block-label">
+            <img src="../assets/humidity.png">
+            <span>humidity</span>
+            </div>
+            <div class="info-block-value">
+            {{this.WeatherData.humidity}}%
+            </div>
+        </div>
+
+        <div class="info-block">
+            <div class="info-block-label">
+            <img src="../assets/climate.png">
+            <span>climate</span>
+            </div>
+            <div class="info-block-value">
+            {{this.WeatherData.main}}
+            </div>
+        </div>
+
+        <div class="info-block">
+            <div class="info-block-label">
+            <img src="../assets/pressure.jpg">
+            <span>Pressure</span>
+            </div>
+            <div class="info-block-value">
+            {{this.WeatherData.pressure}}mb
+          </div>
+        </div>
+    
+        <div class="info-block">
+            <div class="info-block-label">
+            <img src="../assets/wind.png">
+            <span>wind speed</span>
+            </div>
+            <div class="info-block-value">
+            {{this.WeatherData.speed}} km/h
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="error">
+    <div class="align">
+   <img style="width: 2em" src="../assets/invalid.png">
+   <h1>oops! {{this.location}} is a invalid location </h1>
+   </div><br>
+   <div class="align">
+    <img style="width: 2.5em" src="../assets/search1.png">
+    <h1>Search a valid location</h1>
+   </div>
+</div>
